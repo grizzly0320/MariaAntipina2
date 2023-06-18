@@ -24,6 +24,9 @@ namespace MariaAntipina
             try
             {
                 IsSquare(elems);
+                this.row = elems.GetLength(1);
+                this.col = elems.GetLength(0);
+                this.elems = elems;
             }
             catch (Exception ex)
             {
@@ -35,6 +38,9 @@ namespace MariaAntipina
             try
             {
                 IsSquare(other.Elems);
+                this.row = other.Row;
+                this.col = other.Col;
+                this.elems = other.Elems;
             }
             catch (Exception ex)
             {

@@ -4,6 +4,7 @@ namespace MariaAntipina
 {
     public partial class Form1 : Form
     {
+
         List<TextBox> aMatrixTextBoxes, bMatrixTextBoxes, otherTextBoxes;
         SquareMatrix matrix;
         public Form1()
@@ -31,164 +32,233 @@ namespace MariaAntipina
 
         private void FindDeterminant(object sender, EventArgs e)
         {
-            if ((sender as Button).Name == "determinantAButton")
+            try
             {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
+                if ((sender as Button).Name == "determinantAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                }
+                else if ((sender as Button).Name == "determinantBButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(matrix.FindDeterminant());
+                result.Show();
             }
-            else if ((sender as Button).Name == "determinantBButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(matrix.FindDeterminant());
-            result.Show();
         }
 
         private void FindInverse(object sender, EventArgs e)
         {
-            if ((sender as Button).Name == "inverseAButton")
-            {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
+            try 
+            { 
+                if ((sender as Button).Name == "inverseAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                }
+                else if ((sender as Button).Name == "inverseButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(matrix.FindInverse());
+                result.Show();
             }
-            else if ((sender as Button).Name == "inverseButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(matrix.FindInverse());
-            result.Show();
         }
 
         private void FindTranspose(object sender, EventArgs e)
         {
-            if ((sender as Button).Name == "transpositionAButton")
+            try
             {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
+                if ((sender as Button).Name == "transpositionAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                }
+                else if ((sender as Button).Name == "transpositionBButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(matrix.Transpose());
+                result.Show();
             }
-            else if ((sender as Button).Name == "transpositionBButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(matrix.Transpose());
-            result.Show();
         }
 
         private void FindRank(object sender, EventArgs e)
         {
-            if ((sender as Button).Name == "rankAButton")
+            try 
             {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
+                if ((sender as Button).Name == "rankAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                }
+                else if ((sender as Button).Name == "rankBButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(this.matrix.FindRank());
+                result.Show();
             }
-            else if ((sender as Button).Name == "rankBButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(this.matrix.FindRank());
-            result.Show();
         }
 
         private void FindProduct(object sender, EventArgs e)
         {
-            double num = 0;
-            if ((sender as Button).Name == "multiplicationAButton")
+            try
             {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
-                num = Double.Parse(this.numA.Text);
+                double num = 0;
+                if ((sender as Button).Name == "multiplicationAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                    num = Double.Parse(this.numA.Text);
+                }
+                else if ((sender as Button).Name == "multiplicationBButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                    num = Double.Parse(this.numB.Text);
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(matrix * num);
+                result.Show();
             }
-            else if ((sender as Button).Name == "multiplicationBButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
-                num = Double.Parse(this.numB.Text);
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(matrix * num);
-            result.Show();
         }
 
         // Не работает
         private void FindPow(object sender, EventArgs e)
         {
-            double num = 0;
-            if ((sender as Button).Name == "exponentiationAButton")
+            try 
             {
-                this.matrix = new SquareMatrix(InitializeMatrixA());
-                num = Double.Parse(this.degreeA.Text);
+                double num = 0;
+                if ((sender as Button).Name == "exponentiationAButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixA());
+                    num = Double.Parse(this.degreeA.Text);
+                }
+                else if ((sender as Button).Name == "exponentiationBButton")
+                {
+                    this.matrix = new SquareMatrix(InitializeMatrixB());
+                    num = Double.Parse(this.degreeB.Text);
+                }
+                else
+                {
+                    throw new Exception("ERROR");
+                }
+                Result result = new Result(this.matrix^num);
+                result.Show();
             }
-            else if ((sender as Button).Name == "exponentiationBButton")
+            catch (Exception ex)
             {
-                this.matrix = new SquareMatrix(InitializeMatrixB());
-                num = Double.Parse(this.degreeB.Text);
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            else
-            {
-                throw new Exception("ERROR");
-            }
-            Result result = new Result(this.matrix^num);
-            result.Show();
         }
 
         private void FindMatricesProduct(object sender, EventArgs e)
         {
-            SquareMatrix other = new SquareMatrix(InitializeMatrixB());
-            this.matrix = new SquareMatrix(InitializeMatrixA());
-            Result result = new Result(matrix * other);
-            result.Show();
+            try
+            {
+                SquareMatrix other = new SquareMatrix(InitializeMatrixB());
+                this.matrix = new SquareMatrix(InitializeMatrixA());
+                Result result = new Result(matrix * other);
+                result.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
+            }
         }
         private void FindMatricesSum(object sender, EventArgs e)
         {
-            SquareMatrix other = new SquareMatrix(InitializeMatrixB());
-            this.matrix = new SquareMatrix(InitializeMatrixA());
-            Result result = new Result(matrix + other);
-            result.Show();
+            try { 
+                SquareMatrix other = new SquareMatrix(InitializeMatrixB());
+                this.matrix = new SquareMatrix(InitializeMatrixA());
+                Result result = new Result(matrix + other);
+                result.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
+            }
         }
 
         private void FindMatricesDifference(object sender, EventArgs e)
         {
-            SquareMatrix other = new SquareMatrix(InitializeMatrixB());
-            this.matrix = new SquareMatrix(InitializeMatrixA());
-            Result result = new Result(matrix * other);
-            result.Show();
+            try
+            {
+                SquareMatrix other = new SquareMatrix(InitializeMatrixB());
+                this.matrix = new SquareMatrix(InitializeMatrixA());
+                Result result = new Result(matrix * other);
+                result.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
+            }
         }
         private void Swap(object sender, EventArgs e)
         {
-            this.aMatrixTextBoxes = new List<TextBox>();
-            for (int i = 1; i < 4; i++)
+            try 
             {
-                for (int j = 1; j < 4; j++)
+                this.aMatrixTextBoxes = new List<TextBox>();
+                for (int i = 1; i < 4; i++)
                 {
-                    string index = i.ToString() + j.ToString();
-                    this.aMatrixTextBoxes.Add((TextBox)Controls.Find("a" + index, true)[0]);
+                    for (int j = 1; j < 4; j++)
+                    {
+                        string index = i.ToString() + j.ToString();
+                        this.aMatrixTextBoxes.Add((TextBox)Controls.Find("a" + index, true)[0]);
+                    }
                 }
+                this.bMatrixTextBoxes = new List<TextBox>();
+                for (int i = 1; i < 4; i++)
+                {
+                    for (int j = 1; j < 4; j++)
+                    {
+                        string index = i.ToString() + j.ToString();
+                        this.bMatrixTextBoxes.Add((TextBox)Controls.Find("a" + index, true)[0]);
+                    }
+                }
+                List<TextBox> scratchList = this.aMatrixTextBoxes;
+                this.aMatrixTextBoxes = bMatrixTextBoxes;
+                this.bMatrixTextBoxes = scratchList;
             }
-            this.bMatrixTextBoxes = new List<TextBox>();
-            for (int i = 1; i < 4; i++)
+            catch (Exception ex)
             {
-                for (int j = 1; j < 4; j++)
-                {
-                    string index = i.ToString() + j.ToString();
-                    this.bMatrixTextBoxes.Add((TextBox)Controls.Find("a" + index, true)[0]);
-                }
+                MessageBox.Show(ex.Message, "Что-то пошло не так", MessageBoxButtons.OKCancel);
             }
-            List<TextBox> scratchList = this.aMatrixTextBoxes;
-            this.aMatrixTextBoxes = bMatrixTextBoxes;
-            this.bMatrixTextBoxes = scratchList;
         }
 
         private SquareMatrix InitializeMatrixA()
