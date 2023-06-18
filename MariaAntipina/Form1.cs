@@ -221,7 +221,7 @@ namespace MariaAntipina
             {
                 SquareMatrix other = new SquareMatrix(InitializeMatrixB());
                 this.matrix = new SquareMatrix(InitializeMatrixA());
-                Result result = new Result(matrix * other);
+                Result result = new Result(matrix - other);
                 result.Show();
             }
             catch (Exception ex)
@@ -295,7 +295,7 @@ namespace MariaAntipina
                 for (int j = 1; j < 4; j++)
                 {
                     string index = i.ToString() + j.ToString();
-                    this.bMatrixTextBoxes.Add((TextBox)Controls.Find("a" + index, true)[0]);
+                    this.bMatrixTextBoxes.Add((TextBox)Controls.Find("b" + index, true)[0]);
                 }
             }
             double[,] massive = new double[3, 3];
