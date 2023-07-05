@@ -57,8 +57,8 @@ namespace MariaAntipina
 
         private void FindInverse(object sender, EventArgs e)
         {
-            try 
-            { 
+            try
+            {
                 if ((sender as Button).Name == "inverseAButton")
                 {
                     this.matrix = new SquareMatrix(InitializeMatrixA());
@@ -107,7 +107,7 @@ namespace MariaAntipina
 
         private void FindRank(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 if ((sender as Button).Name == "rankAButton")
                 {
@@ -161,7 +161,7 @@ namespace MariaAntipina
         // Не работает
         private void FindPow(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 double num = 0;
                 if ((sender as Button).Name == "exponentiationAButton")
@@ -178,7 +178,7 @@ namespace MariaAntipina
                 {
                     throw new Exception("ERROR");
                 }
-                Result result = new Result(this.matrix^num);
+                Result result = new Result(this.matrix ^ num);
                 result.Show();
             }
             catch (Exception ex)
@@ -203,7 +203,8 @@ namespace MariaAntipina
         }
         private void FindMatricesSum(object sender, EventArgs e)
         {
-            try { 
+            try
+            {
                 SquareMatrix other = new SquareMatrix(InitializeMatrixB());
                 this.matrix = new SquareMatrix(InitializeMatrixA());
                 Result result = new Result(matrix + other);
@@ -231,7 +232,7 @@ namespace MariaAntipina
         }
         private void Swap(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 this.aMatrixTextBoxes = new List<TextBox>();
                 for (int i = 1; i < 4; i++)
@@ -344,6 +345,20 @@ namespace MariaAntipina
             {
                 e.Handled = true;
             }
+        }
+
+        private void textBox5_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar != (char)Keys.A && e.KeyChar != (char)Keys.B && e.KeyChar != '+' && e.KeyChar != '-' && e.KeyChar != '*' && e.KeyChar != '/' && e.KeyChar != '|' && e.KeyChar != '^' && e.KeyChar != (char)Keys.Back && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void solveEquationButton_Click(object sender, EventArgs e)
+        {
+            Mather mather = new(this.textBox5.Text);
+            Result result = new Result(mather.Calc());
         }
     }
 }

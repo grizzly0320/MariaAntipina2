@@ -770,6 +770,7 @@
             solveEquationButton.Text = "=";
             solveEquationButton.TextAlign = ContentAlignment.TopCenter;
             solveEquationButton.UseVisualStyleBackColor = false;
+            solveEquationButton.Click += solveEquationButton_Click;
             // 
             // textBox5
             // 
@@ -782,7 +783,8 @@
             textBox5.Name = "textBox5";
             textBox5.Size = new Size(270, 32);
             textBox5.TabIndex = 22;
-            textBox5.Text = "|AB|/|BC|*A";
+            textBox5.Text = "|A*B|/|B*C|*A";
+            textBox5.KeyPress += textBox5_KeyPress;
             // 
             // label3
             // 

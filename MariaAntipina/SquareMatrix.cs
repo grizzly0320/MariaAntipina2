@@ -216,11 +216,22 @@ namespace MariaAntipina
 
         public static SquareMatrix operator ^(SquareMatrix a, double n)
         {
-            for (int i = 0; i < n; i++)
+            SquareMatrix result;
+            if (n > 0)
             {
-                a *= a;
+                result = a;
+                for (int i = 1; i < n; i++)
+                {
+                    result *= a;
+                }
+            } else if (n == 0)
+            {
+                result = new SquareMatrix(new double[,]{ { 1, 0, 0 }, { 0, 1, 0 }, { 0, 0, 1 } });
+            } else
+            {
+                result = a;
             }
-            return a;
+            return result;
         }
 
         // Оператор сложения двух матриц
